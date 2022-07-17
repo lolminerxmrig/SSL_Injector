@@ -1,18 +1,21 @@
+#!/bin/env python3
+
 import subprocess
 import socket
-import time
 import threading
 import sys,os,re
 import select
+import configparser
 import ssl
 from multiprocessing import Process
-# ----------------SETTINGS-----------------------
-SNI_HOST = 'teams.microsoft.com'
-SSL_SERVER = '139.59.100.91'
-PORT = '443'
-USERNAME = 'cloudssh.us-Yoloee'
-PASSWORD = '1234'
-#------------------------------------------------
+
+settings = configparser.ConfigParser()
+settings.read('settings.ini')
+SNI_HOST = settings['SETTINGS']['SNI_HOST']
+SSL_SERVER = settings['SETTINGS']['SSL_SERVER']
+PORT = settings['SETTINGS']['PORT']
+USERNAME = settings['SETTINGS']['USERNAME']
+PASSWORD = settings['SETTINGS']['PASSWORD']
 
 def tunneling(client,sockt):
     connected = True
