@@ -52,6 +52,7 @@ def destination(client,address):
     except Exception as e:
         print(e)
 
+ssl_connection = subprocess.Popen((f'sshpass -p {PASSWORD} ssh -o ProxyCommand="nc -X CONNECT -x 127.0.0.1:9092 %h %p" {USERNAME}@{SSL_SERVER} -p {PORT} -CND 1080 -o StrictHostKeyChecking=no'),shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
 try:
     sockt = socket.socket()
     sockt.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -59,10 +60,8 @@ try:
     sockt.listen(0)
 except OSError:
     print('Port already used by another process\nRun script again')
-ssl_connection = subprocess.Popen((f'sshpass -p {PASSWORD} ssh -o ProxyCommand="nc -X CONNECT -x 127.0.0.1:9092 %h %p" {USERNAME}@{SSL_SERVER} -p {PORT} -CND 1080 -o StrictHostKeyChecking=no'),shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
 while True:
     try:
-        print("tunnel starting")
         client, address = sockt.accept()
         thr = threading.Thread(target=destination, args=(client, address))
         thr.start()
