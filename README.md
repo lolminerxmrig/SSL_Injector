@@ -16,10 +16,15 @@ Install these dependancies
 
 ```bash
   sshpass
-  netcat-openbsd
+  netcat-openbsd or nc "(not to be confused with gnu-netcat)"
 ```
-
 Use `sudo apt install <package>` for Debian based distros and use `sudo pacman -S <package>` for Arch based distros
+
+## Usage
+
+```bash
+python3 ./SSH_INJECTOR.py
+```
 
 Install [Proxy Switcher](https://add0n.com/proxy-switcher.html) extension on you Browser and choose the following settings
 
