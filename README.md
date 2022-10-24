@@ -16,7 +16,8 @@ Install these dependancies
 
 ```bash
   sshpass
-  netcat-openbsd or nc "(not to be confused with gnu-netcat)"
+  ssh
+  openbsd-netcat or nc "(not to be confused with gnu-netcat)"
 ```
 Use `sudo apt install <package>` for Debian based distros and use `sudo pacman -S <package>` for Arch based distros
 
